@@ -11,10 +11,11 @@ module.exports = (sequelize, DataTypes) => {
               validate: {
                 isEmail:true,
                 isUnique: function (value, next) {
+                            let self = this;
                             Student.find({where: {email: value}})
                             .then(function (student) {
                               // reject if a different user wants to use the same email
-                              if (student) {
+                              if (student && self.id !== student.id) {
                                 return next('Email already in use!');
                               }
                               return next();
@@ -41,6 +42,9 @@ module.exports = (sequelize, DataTypes) => {
     phone : {
               type : DataTypes.STRING,
               validate: {
+                          isAlphanumeric: {
+                            msg : `Phone could not contain not alphanumeric`
+                          },
                           isNumeric: {
                             msg : `Phone could not contain letters`
                           },

@@ -58,6 +58,26 @@ class Student {
         StudentView.showErr(err);
       })
   }
+
+  static updateStudent(data) {
+    let id = data.splice(-1,1);
+    let obj = {};
+    for (var i = 0; i < data.length; i+=2) {
+      obj[data[i]] = data[i+1];
+    }
+    Model.Student.update(obj, {where:{id : id}})
+      .then(data => {
+        if (data[0] === 1) {
+          StudentView.showData(`Successfully update student`)
+        } else {
+          StudentView.showErr(`Student id not found`)
+        }
+      })
+
+      .catch((err) => {
+        StudentView.showErr(err);
+      })
+  }
 }
 
 module.exports = Student;

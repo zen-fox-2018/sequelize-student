@@ -21,6 +21,10 @@ class MyStudents {
             Student.addStudent(this.command.slice(2));
             break;
 
+          case 'update':
+            Student.updateStudent(this.command.slice(2));
+            break;
+
           default:
           console.log(`Salah bosss`);
 
