@@ -1,5 +1,6 @@
 const Model = require ('../models')
 
+
 class Controller {
     
     static getAllFullName() {
@@ -52,8 +53,37 @@ class Controller {
         })
         .catch((err)=> {
             console.log(err);
+        })
+    }
+
+    static updateStudentById(id, first_name, last_name, gender, birthday, email, phone, tinggiBadan) {
+
+        let objStudent = {
+            first_name:first_name,
+            last_name:last_name,
+            gender: gender,
+            birthday:birthday,
+            email:email,
+            phone:phone,
+            tinggiBadan:tinggiBadan
+        }
+        Model.Student.find({where :{email: objStudent.email} })
+        .then(data => {
+            if(data.email == objStudent.email) {
+                delete objStudent.email
+            }
+            return Model.Student.update(objStudent, {
+                where : {id : id}
+            })
+        })
+        .then(()=> {
+            console.log(`Berhasil Update`);
             
         })
+        .catch(err => {
+            console.log(err);  
+        })
+        
     }
 }
 

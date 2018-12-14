@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
             where:{email: value} 
           })
          .then(data=> {
+           
            if(data) throw next(`Email sudah pernah dipakai`)
            next()
          })
