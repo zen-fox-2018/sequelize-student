@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
                             .then(function (student) {
                               // reject if a different user wants to use the same email
                               if (student && self.id !== student.id) {
-                                return next('Email already in use!');
+                                return next({msg : 'Email already in use!'});
                               }
                               return next();
                             })
@@ -66,7 +66,6 @@ module.exports = (sequelize, DataTypes) => {
     let d = new Date();
     return d.getFullYear() - +this.birthday.substring(0,4);
   }
-
 
   Student.getFemaleStudents = function() {
     return new Promise ((resolve, reject) => {
