@@ -10,21 +10,21 @@ module.exports = (sequelize, DataTypes) => {
       , 
       validate: {
         isUnique: function(value){
-          return Student.findOne({where:{email:value}})
+          return Student.findOne({where:{
+            email:value
+          }})
             .then(data => {
               if(data){
-                throw new Error(`Email has been used`)
+                if(data.dataValues.id != this.id) {
+                  throw new Error(`Email has been used`)
+                }
               }
             })
             .catch(err =>{
               throw new Error(err)
             })
         },
-        isEmail: true,
-        is: {
-          args: ["^[@,.]+$",'i'],
-          msg: 'must contain @ & .'
-          } 
+        isEmail: true
         }
       },
     phone: {

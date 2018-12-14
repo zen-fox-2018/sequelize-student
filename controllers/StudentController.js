@@ -24,6 +24,23 @@ class StudentController{
     }
   }
 
+  static update(input) {
+    let field = input[0]
+    let value = input[1]
+
+    Student.update({[field]: value, id: input[2]}, {where: {
+      id: input[2]
+    }})
+    .then(data => {
+      View.display(`Data updated`)
+      process.exit()
+    })
+    .catch(err => {
+      View.display(err.message)
+      process.exit()
+    })
+  }
+  
   static show() {
     Student.getFemaleStudents()
       .then(data => {
