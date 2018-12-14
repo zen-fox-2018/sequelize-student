@@ -8,6 +8,10 @@ switch (argv[0]) {
         Controller.add(argv.slice(1))
         break;
 
+    case'update':
+        Controller.update(argv.slice(1))
+        break;    
+
     case 'getFullName':
         Controller.getFullName()
         break;

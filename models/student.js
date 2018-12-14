@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
           args: true,
           msg: "error email validation"
         },
-        isUnique(email) {
-          return Student.findOne({where: {email: email}})
+        isUnique(value) {
+          return Student.findOne({where: {email: value}})
             .then(data => {
               if (data) {
                 throw new Error('email already used')

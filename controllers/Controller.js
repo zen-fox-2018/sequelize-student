@@ -15,12 +15,42 @@ class Controller {
             phone: arr[5],
             tinggiBadan: arr[6]
         }
-        Student.create(obj)
+        if (!arr[6]) {
+            View.disErr('please insert all data')
+        } else {
+            Student.create(obj)
+                .then(data => {
+                    View.display(data.dataValues)
+                })
+                .catch(err => {
+                    View.disErr(err.errors[0].message)
+                })
+        }
+    }
+
+    static update(arr) {
+        let id = arr[0]
+        let obj = {
+            first_name: arr[1],
+            last_name: arr[2],
+            gender: arr[3],
+            birthday: arr[4],
+            email: arr[5],
+            phone: arr[6],
+            tinggiBadan: arr[7]
+        }
+        Student.findOne({where: {id: id}})
             .then(data => {
-                View.display(data.dataValues)
+                if (data.email === obj.email) {
+                    delete obj.email
+                }
+                return Student.update(obj, {where: {id: id}})
+            })
+            .then(data => {
+                View.display(data)
             })
             .catch(err => {
-                View.disErr(err.errors[0].message)
+                View.disErr(err)
             })
     }
 
