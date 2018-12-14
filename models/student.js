@@ -11,11 +11,9 @@ module.exports = (sequelize, DataTypes) => {
               validate: {
                 isEmail:true,
                 isUnique: function (value, next) {
-                            let self = this;
-                            Student.find({where: {email: value}})
-                            .then(function (student) {
-                              // reject if a different user wants to use the same email
-                              if (student && self.id !== student.id) {
+                  console.log(this);
+                            .then((student) => {
+                              if (student && this.id !== student.id) {
                                 return next({msg : 'Email already in use!'});
                               }
                               return next();
