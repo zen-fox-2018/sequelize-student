@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
           })
          .then(data=> {
            
-           if(data) throw next(`Email sudah pernah dipakai`)
+           if(data.dataValues.id != this.id) throw next(`Email sudah pernah dipakai`)
            next()
          })
          .catch(err => {

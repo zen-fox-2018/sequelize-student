@@ -59,6 +59,7 @@ class Controller {
     static updateStudentById(id, first_name, last_name, gender, birthday, email, phone, tinggiBadan) {
 
         let objStudent = {
+            id:id,
             first_name:first_name,
             last_name:last_name,
             gender: gender,
@@ -67,15 +68,15 @@ class Controller {
             phone:phone,
             tinggiBadan:tinggiBadan
         }
-        Model.Student.find({where :{email: objStudent.email} })
-        .then(data => {
-            if(data.email == objStudent.email) {
-                delete objStudent.email
-            }
-            return Model.Student.update(objStudent, {
-                where : {id : id}
-            })
+        // Model.Student.find({where :{email: objStudent.email} })
+        // .then(data => {
+        //     if(data.email == objStudent.email) {
+        //         delete objStudent.email
+        //     }
+         Model.Student.update(objStudent, {
+            where : {id : id}
         })
+        // })
         .then(()=> {
             console.log(`Berhasil Update`);
             
