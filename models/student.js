@@ -11,13 +11,13 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true,
         isUnique: function(value) {
           return Student.findOne({where: {email: value}})
-            .then(function(result) {
-              if (result) {
+            .then((result) => {
+              if (result.dataValues.id !== this.id) {
                 throw new Error('Email already used')
               }
             })
 
-            .catch(function(err) {
+            .catch((err) => {
               throw new Error(err)
             })
         }
@@ -30,8 +30,8 @@ module.exports = (sequelize, DataTypes) => {
           args: [10,13],
           msg: `Phone length mush be 10 - 13`
         },
-        isAlpha: {
-          args: false,
+        isNumeric: {
+          args: true,
           msg: `Phone could not contain letters`
         },
         isAlphanumeric: {

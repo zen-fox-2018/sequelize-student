@@ -1,18 +1,21 @@
 const Controller = require('./controllers/Controller.js')
 
 let obj = {
-  first_name: 'Sponge',
+  id: 11,
+  first_name: 'Mr',
   last_name: 'Bob',
   gender: 'male',
   birthday: '1996-04-28',
   email: 'patrick@star3.biz',
-  phone: '12345678901s0sdsds-',
+  phone: '01234567899',
   height: 150,
-  createdAt: new Date,
-  updatedAt: new Date
+  // createdAt: new Date,
+  // updatedAt: new Date
 }
 
-Controller.create(obj)
+Controller.update(obj, 11)
+
+// Controller.create(obj)
 
 // Controller.findAll()
 

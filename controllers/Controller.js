@@ -50,6 +50,23 @@ class Controller {
       })
   }
 
+  static update(obj, id) {
+    console.log(obj);
+    Model.Student.update(obj,{
+      where: {
+        id: id
+      }
+    })
+      .then(function(result) {
+        View.data(result)
+        process.exit()
+      })
+
+      .catch(function(err) {
+        View.error(err.message)
+        process.exit()
+      })
+  }
 }
 
 module.exports = Controller
