@@ -35,7 +35,7 @@ class Controller {
          })
     }
 
-    static getFStu() {
+    static getFemaleStudents() {
         Model.Student.getFemaleStudents()
         .then(femaleStudents => {
             View.showFemaleStudents(femaleStudents)

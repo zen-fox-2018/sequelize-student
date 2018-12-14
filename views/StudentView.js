@@ -1,6 +1,6 @@
 class View {
     static showFemaleStudents(file) {
-        console.log(`=========`, file);
+        console.log(file);
     }
 
     static errorOperation(err) {

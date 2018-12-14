@@ -9,10 +9,40 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         isEmail: true,
-        notEmpty: true
+        notEmpty: true,
+        isUnique: function(email){
+          return Student.findOne({
+            where: {
+              email: email
+            }
+          })
+          .then(data => {
+            if (data.dataValues.email === email)
+            throw new Error('ERROR!: Your email has been registered to the system!');
+          })
+          .catch(err => {
+            throw err
+          })
+        }
       }
     },
-    phone: DataTypes.STRING,
+    phone: {
+      type: DataTypes.STRING,
+      validate: {
+        len: {
+          args: [10, 13],
+          msg: `Phone length must be 10 - 13`
+        },
+        isNumeric: {
+          args: true,
+          msg: `Phone could not contain letters`
+        },
+        isAlphanumeric: {
+          args: false,
+          msg: `Phone could not contain non-alphanumeric`
+        }
+      }
+    },
     heights: {
       type: DataTypes.INTEGER,
       validate: {

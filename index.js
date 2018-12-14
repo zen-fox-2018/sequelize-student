@@ -7,7 +7,7 @@ switch (command) {
         Controller.add(argv[1], argv[2], argv[3], argv[4], argv[5], argv[6], argv[7])
         break;
     case 'showAllFemaleStudents':
-        Controller.getFStu()
+        Controller.getFemaleStudents()
         break;
     case 'delete':
         Controller.delete(argv[1])
@@ -22,6 +22,6 @@ switch (command) {
         Controller.getFullName()
         break;
     default:
-        console.log('SALAH KEYWORD')
+        console.log('Keyword is Unavailable!')
         break;
 }
