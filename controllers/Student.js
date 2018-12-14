@@ -55,7 +55,7 @@ class Student {
       })
 
       .catch((err) => {
-        StudentView.showErr(err);
+        StudentView.showErr(err.errors[0].message);
       })
   }
 
@@ -75,7 +75,7 @@ class Student {
       })
 
       .catch((err) => {
-        StudentView.showErr(err);
+        StudentView.showErr(err.errors[0].message);
       })
   }
 }
