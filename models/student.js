@@ -9,16 +9,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate:{
         isEmail: true,
-        isUnique: function(value, reject) {
+        isUnique: function(value, next) {
           Student.find({
             where:{email: value} 
           })
          .then(data=> {
-           if(data) throw reject(`Email sudah pernah dipakai`)
-           reject()
+           if(data) throw next(`Email sudah pernah dipakai`)
+           next()
          })
          .catch(err => {
-           reject(err)
+           next(err)
          })
         }
       }
@@ -29,14 +29,14 @@ module.exports = (sequelize, DataTypes) => {
         len:{
           args :[10,13],
           msg: "Validation Error : Phone length must be 10-13"
+        }, 
+        isAlphanumeric : {
+          args:true,
+          msg: "Validation Error : Phone could not contain non-alphanumeric"
         },
         isNumeric : {
           args:true,
           msg: "Validation Error : Phone could not contain letters"
-        }, 
-        isAlphanumeric : {
-          args:false,
-          msg: "Validation Error : Phone could not contain non-alphanumeric"
         }
       }
     },
