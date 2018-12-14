@@ -3,6 +3,11 @@ class View {
         console.log(data);
         
     }
+
+    static error(err) {
+        console.log(err);
+        
+    }
 }
 
 module.exports = View

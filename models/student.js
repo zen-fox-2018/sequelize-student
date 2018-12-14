@@ -5,8 +5,44 @@ module.exports = (sequelize, DataTypes) => {
     last_name: DataTypes.STRING,
     gender: DataTypes.STRING,
     birthday: DataTypes.STRING,
-    email: DataTypes.STRING,
-    phone: DataTypes.STRING
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: true,
+        isUnique: function (value) {
+          Student.findOne({
+            where: {
+              email: value
+            }
+          }).then((result) => {
+            console.log(result);
+            
+            if (result == null) {
+              console.log(`success`);
+            } else {
+              throw new Error(`EMAIL SUDAH ADA!`)
+            }
+            
+          }).catch((err) => {
+            console.log(err);
+            
+          });
+        }
+      }
+    },
+    phone: {
+      type: DataTypes.STRING,
+      validate: {
+        isNumeric: true,
+        len: [10, 13]
+      }
+    },
+    height: {
+      type: DataTypes.INTEGER,
+      validate: {
+        min: 150
+      }
+    }
   }, {});
   Student.associate = function (models) {
     // associations can be defined here
@@ -53,6 +89,7 @@ module.exports = (sequelize, DataTypes) => {
       }
       return obj
     }
+
   }
   return Student;
 };

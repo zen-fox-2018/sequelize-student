@@ -15,7 +15,7 @@ switch (command) {
         ControllerStudent.getFemaleStudent()
         break;
 
-    case value:
-
+    case `addStudent`:
+        ControllerStudent.addStudent()
         break;
 }
