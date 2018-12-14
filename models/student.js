@@ -20,14 +20,14 @@ module.exports = (sequelize, DataTypes) => {
                               throw new Error(err)
                           })
                        },
-                       isEmail:{
-                                args:true,
-                                msg: "invalid email"
-                               } ,
-                      contains: {
-                                args: ["@", "."],
-                                msg:"invalid email format"
-                      }
+                       isEmail: {
+                                  args:true,
+                                  msg: "invalid email"
+                                } ,
+                       contains:{
+                                  args: ["@", "."],
+                                  msg:"invalid email format"
+                                }
                       }
            } ,
     phone: {
@@ -40,11 +40,11 @@ module.exports = (sequelize, DataTypes) => {
                      isNumeric: {
                                   args: true,
                                   msg: "Phone could not contain letters"
-                                 },
+                                },
                 isAlphanumeric: {
                                   args: true,
                                   msg: "Phone could not contain non-alphanumeric"
-                                 }
+                                }
               }
            },
     height:{

@@ -43,6 +43,13 @@ class StudentController {
                 })
         }
     }
+
+    static update(input) {
+        let field = input[0]
+        let value = input[1]
+        let id = input[2]
+        Student.update({[field]: value}, {where:{id}})
+    }
 }
 
 

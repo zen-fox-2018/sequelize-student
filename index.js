@@ -11,6 +11,8 @@ switch (command) {
     case "add":
         StudentController.add(input)
         break;
+    case "update": 
+        StudentController.update(input)
     default:
         break;
 }
