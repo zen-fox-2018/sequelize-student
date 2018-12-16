@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
                 isUnique (value, next) {
                     Student.find({where:{email:value}})
                             .then((student) => {
+                              console.log(this);
                               if (student && this.id !== student.id) {
                                 return next ({msg : 'Email already in use!'});
                               }

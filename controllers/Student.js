@@ -65,18 +65,18 @@ class Student {
     for (var i = 0; i < data.length; i+=2) {
       obj[data[i]] = data[i+1];
     }
-  //   Model.Student.update(obj, {where:{id : id}})
-  //     .then(data => {
-  //       if (data[0] === 1) {
-  //         StudentView.showData(`Successfully update student`)
-  //       } else {
-  //         StudentView.showErr(`Student id not found`)
-  //       }
-  //     })
-  //
-  //     .catch((err) => {
-  //       StudentView.showErr(err.errors[0].message);
-  //     })
+    // Model.Student.update(obj, {where:{id : id}})
+    //   .then(data => {
+    //     if (data[0] === 1) {
+    //       StudentView.showData(`Successfully update student`)
+    //     } else {
+    //       StudentView.showErr(`Student id not found`)
+    //     }
+    //   })
+    //
+    //   .catch((err) => {
+    //     StudentView.showErr(err.errors[0].message);
+    //   })
   // }
 
   Model.Student.findByPk(+id)
@@ -92,7 +92,7 @@ class Student {
       StudentView.showData(`Successfully update student`);
     })
     .catch(err => {
-      StudentView.showErr(JSON.stringify(err));
+      StudentView.showErr(JSON.stringify(err.errors[0].message));
     })
   }
 }
