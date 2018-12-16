@@ -81,14 +81,18 @@ class Student {
 
   Model.Student.findByPk(+id)
     .then(student => {
-      return student.update(obj)
+      if (student) {
+        return student.update(obj);
+      } else {
+        throw (`Student Not Found`);
+      }
     })
 
     .then(() => {
-      StudentView.showData(`Successfully update student`)
+      StudentView.showData(`Successfully update student`);
     })
     .catch(err => {
-      StudentView.showErr(err.errors[0].message);
+      StudentView.showErr(JSON.stringify(err));
     })
   }
 }

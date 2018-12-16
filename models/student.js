@@ -10,11 +10,11 @@ module.exports = (sequelize, DataTypes) => {
               allowNull: false,
               validate: {
                 isEmail:true,
-                isUnique: function (value, next) {
-                  console.log(this);
+                isUnique (value, next) {
+                    Student.find({where:{email:value}})
                             .then((student) => {
                               if (student && this.id !== student.id) {
-                                return next({msg : 'Email already in use!'});
+                                return next ({msg : 'Email already in use!'});
                               }
                               return next();
                             })
