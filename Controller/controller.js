@@ -35,6 +35,19 @@ class Controller {
             process.exit();
         })
     }
+
+    static update(input) {
+        // console.log(input)
+        Model.Student.update(input, {
+            where: {
+                id: input.id
+            }
+        }).then(updated => {
+            Views.showUpdated(updated)
+        }).catch(err => {
+            Views.showError(err)
+        })
+    }
 }
 
 module.exports = Controller

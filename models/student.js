@@ -41,9 +41,9 @@ module.exports = (sequelize, DataTypes) => {
           msg: "Phone could not contain letters",
           args: true
         },
-        isAlphaNumeric: {
+        isAlphanumeric: {
           msg: "Phone could not contain non-alphanumeric",
-          args: false
+          args: true
         }
       }
     },
